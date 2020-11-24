@@ -1,7 +1,195 @@
-body {
-    background-color: white;
+:root {
+    --header-text-colors: rgb(204, 255, 255);
+    --header-background-colors: rgb(0, 88, 88);
+    --header-background: linear-gradient(0deg, rgb(0, 94, 94),rgb(0, 151, 151));
+    --floating-shadow-radius: 4px;
+    --floating-shadow-distance: 10px;
+    --floating-distance:10px;
+    --title-shadow-color: rgb(0, 0, 0);
+    --body-background: rgb(255, 255, 255);
+    --default-text-colors: black;
+    /* --main-background: linear-gradient(180deg, rgb(206, 255, 255), rgb(139, 185, 185)); */
+    --main-background-color: rgb(225, 255, 255);
+    /* --navigator-background-color:rgb(95, 189, 189); */
+    --navigator-links-hover-color: rgba(173, 255, 255, 0.651);
+    --navigator-background: linear-gradient(90deg, rgb(75, 175, 175),rgb(137, 206, 206) );
+    --subtopics-background-color: rgb(185, 247, 247);
+    --page-sides-margin: 0.5em;
 }
 
-h1 {
-    color: red;
+*:hover {
+    border: 1px red;
 }
+
+body {
+    margin: 0px;
+    color: var(--default-text-colors);
+    text-align: center;
+    align-content: center;
+    background-color: var(--body-background);
+
+    display: grid;
+    grid-template-columns: 9em 1fr;
+    grid-template-areas: 
+    "head head"
+    "extra body"
+    "extra foot";
+}
+
+header {
+    border-bottom-left-radius : 5em;
+    border-bottom-right-radius : 5em;
+    width: 100%;
+    color: var(--header-text-colors);
+    background-color: var(--header-background-colors);
+    background: var(--header-background);
+    grid-area: head;
+    margin-bottom: 0.3em;
+    box-shadow: 0px 3px 4px 0px black;
+    z-index: 100;
+}
+
+main {
+    grid-area: body;
+    background-color: var(--main-background-color);
+    /* background: var(--main-background); */
+    border-top-right-radius: 2em;
+    margin-right: var(--page-sides-margin);
+}
+
+/* #img-div {
+    display: inline-block;
+    background-color: blue;
+} */
+
+#img-figure {
+    display: inline-block;
+    /* background-color: red; */
+}
+
+footer {
+    grid-area: foot;
+    /* background-color: var(--header-background-colors); */
+    background: var(--header-background);
+    color: var(--header-text-colors);
+}
+
+footer a{
+    color: var(--header-text-colors);
+    text-decoration: underline;
+}
+
+#navigator {
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+    background-color: var(--navigator-background-color);
+    background: var(--navigator-background);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: right;
+    grid-area: extra;
+    position: sticky;
+    height: 100vh;
+    top: 0px;
+    overflow: auto;
+    margin-left: var(--page-sides-margin);
+}
+
+#navigator a {
+    width: 100%;
+    padding-top: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    box-shadow: -0.1em 0.1em 0.1em black;
+    margin-bottom: 0.1em;
+    /* font-size: 1.09em; */
+    font-weight: 1000;
+    color: rgb(0, 0, 0);
+}
+
+a {
+    text-decoration: none;
+}
+
+#navigator a:hover {
+    background-color: var(--navigator-links-hover-color);
+    border-top-left-radius: 20%;
+    border-bottom-left-radius: 20%;
+}
+
+#navigator div {
+    background-color: var(--navigator-links-hover-color);
+}
+
+#tribute-info h3 {
+    text-align: left;
+}
+
+#tribute-info > div {
+    border-radius: 1em;
+    background-color: var(--subtopics-background-color);
+    box-shadow: 0px 3px 3px black;
+    margin: 0.8em;
+    padding: 0.5em;
+}
+
+#tribute-info p {
+    text-align: left;
+    text-indent: 50px;
+}
+
+p {
+    line-height: 2em;
+    padding: 0.5em;
+}
+
+figcaption {
+    padding: 0.5em;
+    font-size: 1.2em;
+}
+
+#gTitle #title {
+    animation: floating 3.5s infinite;
+}
+
+
+#gTitle {
+    min-height: fit-content;
+}
+
+#image {
+    border-radius: 1em;
+    box-shadow: 3px 5px 5px black;
+    max-width: 100%;
+    display: block;
+}
+
+@keyframes fade {
+    0% { opacity: 1;}
+    100% { opacity: 0;}
+}
+
+@keyframes floating {
+    0% {
+        position: relative;
+        transform: scale(100%);
+        text-shadow: 0px 0px 0px var(--title-shadow-color);
+        bottom: 0px;
+    }
+
+    50% {
+        position: relative;
+        transform: scale(101%);
+        text-shadow: 0px var(--floating-shadow-distance) var(--floating-shadow-radius) var(--title-shadow-color);
+        bottom: var(--floating-distance);
+    }
+
+    100% {
+        position: relative;
+        transform: scale(100%);
+        text-shadow: 0px 0px 0px var(--title-shadow-color);
+        bottom: 0px;
+    }
+}
+
